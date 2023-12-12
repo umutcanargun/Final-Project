@@ -8,6 +8,8 @@ class TobetoLoginPage extends StatefulWidget {
 }
 
 class _TobetoLoginPageState extends State<TobetoLoginPage> {
+  bool passenable = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,19 +30,43 @@ class _TobetoLoginPageState extends State<TobetoLoginPage> {
                     color: Colors.black, fontSize: 25, fontFamily: 'Raleway'),
               ),
               const Spacer(),
-              TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(35)),
-                      labelText: 'Kullanıcı Kodu')),
+              SizedBox(
+                height: 60,
+                child: TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(35)),
+                        labelText: 'Kullanıcı Kodu')),
+              ),
               const Spacer(),
-              TextField(
-                  obscureText: true,
+              SizedBox(
+                height: 60,
+                child: TextField(
+                  obscureText: passenable,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(35)),
-                      labelText: 'Parola')),
+                      labelText: 'Parola',
+                      suffix: IconButton(
+                          onPressed: () {
+                            //add Icon button at end of TextField
+                            setState(() {
+                              //refresh UI
+                              if (passenable) {
+                                //if passenable == true, make it false
+                                passenable = false;
+                              } else {
+                                passenable =
+                                    true; //if passenable == false, make it true
+                              }
+                            });
+                          },
+                          icon: Icon(passenable == true
+                              ? Icons.remove_red_eye
+                              : Icons.password))),
+                ),
+              ),
               const Spacer(),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(

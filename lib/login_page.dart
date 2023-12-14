@@ -1,3 +1,4 @@
+import 'package:application/my_drawer.dart';
 import 'package:flutter/material.dart';
 
 class TobetoLoginPage extends StatefulWidget {
@@ -13,6 +14,7 @@ class _TobetoLoginPageState extends State<TobetoLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(),
       body: Stack(fit: StackFit.expand, children: [
         Image.asset(
           'lib/assets/mor.jpg', // Kullanmak istediğiniz resmin yolu

@@ -1,4 +1,4 @@
-import 'package:application/my_drawer.dart';
+import 'package:application/widgets/my_drawer.dart';
 import 'package:flutter/material.dart';
 
 class TobetoLoginPage extends StatefulWidget {
@@ -10,11 +10,13 @@ class TobetoLoginPage extends StatefulWidget {
 
 class _TobetoLoginPageState extends State<TobetoLoginPage> {
   bool passenable = true;
+  TextEditingController _passwordController = TextEditingController();
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body: Stack(fit: StackFit.expand, children: [
         Image.asset(
           'lib/assets/mor.jpg', // Kullanmak istediğiniz resmin yolu
@@ -30,24 +32,23 @@ class _TobetoLoginPageState extends State<TobetoLoginPage> {
             child: Column(
               children: [
                 const Spacer(),
-                const Text(
-                  'Tobeto',
-                  style: TextStyle(
-                      color: Colors.black, fontSize: 25, fontFamily: 'Raleway'),
+                Image.asset(
+                  "lib/assets/tobeto.png",
+                  width: 150,
                 ),
                 const Spacer(),
-                Container(
+                SizedBox(
                   width: 250,
                   height: 40,
                   child: TextField(
-                    style: TextStyle(fontSize: 13),
+                    style: const TextStyle(fontSize: 13),
                     obscureText: true,
                     decoration: InputDecoration(
-                      hintText: "Kullanıcı Kodu",
-                      hintStyle: const TextStyle(
-                        color: Color.fromARGB(147, 94, 94, 94),
-                      ),
-                      contentPadding: EdgeInsets.only(left: 10),
+                      labelText: 'Kullanıcı Kodu',
+                      labelStyle: const TextStyle(
+                          color: Color.fromARGB(190, 136, 136, 136),
+                          fontFamily: "Raleway"),
+                      contentPadding: const EdgeInsets.only(left: 10),
                       filled: true,
                       fillColor: Colors.white,
                       enabledBorder: OutlineInputBorder(
@@ -62,46 +63,40 @@ class _TobetoLoginPageState extends State<TobetoLoginPage> {
                   ),
                 ),
                 const Spacer(),
-                Container(
+                SizedBox(
                   width: 250,
                   height: 40,
                   child: TextField(
-                    style: TextStyle(fontSize: 13),
-                    obscureText: passenable,
+                    controller: _passwordController,
+                    obscureText: _isObscure,
                     decoration: InputDecoration(
-                        hintText: "Parola",
-                        hintStyle: const TextStyle(
-                          color: Color.fromARGB(147, 94, 94, 94),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Color.fromARGB(107, 159, 159, 159)),
-                            borderRadius: BorderRadius.circular(10)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Color.fromARGB(107, 159, 159, 159)),
-                            borderRadius: BorderRadius.circular(7)),
-                        // labelText: 'Parola',
-                        suffix: IconButton(
-                            padding: EdgeInsets.only(top: 0),
-                            onPressed: () {
-                              //add Icon button at end of TextField
-                              setState(() {
-                                //refresh UI
-                                if (passenable) {
-                                  //if passenable == true, make it false
-                                  passenable = false;
-                                } else {
-                                  passenable =
-                                      true; //if passenable == false, make it true
-                                }
-                              });
-                            },
-                            icon: Icon(passenable == true
-                                ? Icons.remove_red_eye
-                                : Icons.password))),
+                      labelText: 'Parola',
+                      labelStyle: const TextStyle(
+                          color: Color.fromARGB(190, 136, 136, 136),
+                          fontFamily: "Raleway"),
+                      filled: true,
+                      fillColor: Colors.white,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(107, 159, 159, 159)),
+                          borderRadius: BorderRadius.circular(7)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color.fromARGB(107, 159, 159, 159),
+                          ),
+                          borderRadius: BorderRadius.circular(7)),
+                      suffixIcon: IconButton(
+                        icon: Icon(_isObscure
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          // Parola gizliliğini değiştir
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        },
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -126,7 +121,8 @@ class _TobetoLoginPageState extends State<TobetoLoginPage> {
                     onPressed: () {},
                     child: const Text(
                       "Parolamı Unuttum",
-                      style: TextStyle(color: Colors.blue),
+                      style:
+                          TextStyle(color: Colors.blue, fontFamily: 'Raleway'),
                     ))
               ],
             ),

@@ -1,3 +1,4 @@
+import 'package:application/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:application/login_page.dart';
 
@@ -13,10 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Tobeto Login Page',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      themeMode: ThemeMode.system,
+      theme: ThemeClass
+          .lightTheme, // applies this theme if the device theme is light mode
+      darkTheme: ThemeClass
+          .darkTheme, // applies this theme if the device theme is dark mode
+
       home: TobetoLoginPage(),
     );
   }

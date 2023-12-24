@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Tobeto Login Page',
       themeMode: ThemeMode.system,
       theme: ThemeClass
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeClass
           .darkTheme, // applies this theme if the device theme is dark mode
 
-      home: TobetoLoginPage(),
+      home: const TobetoLoginPage(),
     );
   }
 }

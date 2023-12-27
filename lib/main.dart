@@ -1,3 +1,4 @@
+import 'package:application/screens/platform_page.dart';
 import 'package:application/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:application/login_page.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeClass
           .darkTheme, // applies this theme if the device theme is dark mode
 
-      home: const TobetoLoginPage(),
+      home: PlatformPage(),
     );
   }
 }

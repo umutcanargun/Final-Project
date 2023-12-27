@@ -68,6 +68,8 @@ flutter:
    - lib/assets/mor.jpg
    - lib/assets/tobeto.png
    - lib/assets/user.jpeg
+   - lib/assets/ik.png
+   - lib/assets/tb.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
